@@ -1,0 +1,21 @@
+on:
+  pull_request: {}
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    container: node:21.5.0-alpine3.19
+    steps:
+      - run: apk add make
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run formatting
+
+  spelling:
+    runs-on: ubuntu-latest
+    container: node:21.5.0-alpine3.19
+    steps:
+      - run: apk add make
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run spelling

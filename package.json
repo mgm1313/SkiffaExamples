@@ -9,8 +9,8 @@
   "scripts": {
     "spelling": "cspell",
     "formatting": "prettier --check *",
-    "generate": "./scripts/generate.js",
-    "postinstall": "./scripts/postinstall.js"
+    "generate": "node ./scripts/generate.js",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "devDependencies": {
     "cspell": "^8.8.0",
