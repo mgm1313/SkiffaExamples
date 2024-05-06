@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "generated/npm/*",
+    "packages/npm/*"
+  ],
+  "packageManager": "npm@10.5.0",
+  "scripts": {
+    "spelling": "cspell",
+    "formatting": "prettier --check *",
+    "generate": "./scripts/generate.js",
+    "postinstall": "./scripts/postinstall.js"
+  },
+  "devDependencies": {
+    "cspell": "^8.8.0",
+    "prettier": "^3.2.5"
+  }
+}

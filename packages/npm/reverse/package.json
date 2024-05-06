@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepack": "tsc",
+    "pretest": "tsc",
+    "prestart": "tsc",
+    "start": "node transpiled/server.js",
+    "build": "tsc",
+    "test": "node --test ./transpiled/**/*.test.js"
+  },
+  "dependencies": {
+    "@types/node": "^18.19.31",
+    "reverse-api": "^0.1.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "typescript": "^5.4.5",
+    "oa42-generator": "^0.9.27"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

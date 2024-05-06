@@ -1,0 +1,12 @@
+version: "0.2"
+words:
+  - esbenp
+  - openapi
+  - prestart
+  - remle
+  - ryanluker
+useGitignore: true
+files:
+  - "**"
+enableFiletypes:
+  - "*"
