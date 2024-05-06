@@ -1,6 +1,14 @@
 {
   "folders": [
     {
+      "name": "specifications",
+      "path": "specifications",
+    },
+    {
+      "name": "npm/shared",
+      "path": "packages/npm/shared",
+    },
+    {
       "name": "npm/reverse",
       "path": "packages/npm/reverse",
     },

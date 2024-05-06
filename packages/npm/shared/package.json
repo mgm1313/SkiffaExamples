@@ -1,0 +1,35 @@
+{
+  "name": "shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "module": "./transpiled/main.js",
+  "types": "./typed/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./transpiled/main.js",
+      "types": "./typed/main.d.ts"
+    }
+  },
+  "files": [
+    "./typed/**",
+    "./bundled/**"
+  ],
+  "scripts": {
+    "prepack": "tsc --build",
+    "pretest": "tsc --build",
+    "prestart": "tsc --build",
+    "build": "tsc --build",
+    "test": "node --test ./transpiled/**/*.test.js"
+  },
+  "dependencies": {
+    "@types/node": "^18.19.31"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

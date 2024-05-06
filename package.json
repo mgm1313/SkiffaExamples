@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "workspaces": [
+    "packages/npm/shared",
     "generated/npm/*",
     "packages/npm/*"
   ],
@@ -10,10 +11,11 @@
     "spelling": "cspell",
     "formatting": "prettier --check *",
     "generate": "node ./scripts/generate.js",
-    "postinstall": "node ./scripts/postinstall.js"
+    "initialize": "node ./scripts/initialize.js"
   },
   "devDependencies": {
     "cspell": "^8.8.0",
+    "oa42-generator": "^0.9.27",
     "prettier": "^3.2.5"
   }
 }
