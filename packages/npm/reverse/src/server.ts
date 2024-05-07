@@ -1,4 +1,3 @@
-import fs from "fs/promises";
 import path from "path";
 import * as api from "reverse-api";
 import * as shared from "shared";
@@ -15,58 +14,24 @@ async function main() {
   // register all operations
   server.registerOperations(operationHandlers);
 
-  // serve a static file (will be generic middleware in the future)
-  server.registerMiddleware(async (request, next) => {
-    if (request.method === "GET") {
-      switch (request.path) {
-        case "/":
-          return {
-            status: 200,
-            headers: {
-              "content-type": "text/html",
-            },
-            async *stream() {
-              const data = await fs.readFile(path.join(projectRoot, "public", "index.html"));
-              yield data;
-            },
-          };
-
-        case "/favicon.ico":
-          return {
-            status: 204,
-            headers: {},
-            async *stream() {},
-          };
-
-        case "/client.js":
-          return {
-            status: 200,
-            headers: {
-              "content-type": "application/javascript",
-            },
-            async *stream() {
-              const data = await fs.readFile(path.join(projectRoot, "bundled", "client.js"));
-              yield data;
-            },
-          };
-
-        case "/client.js.map":
-          return {
-            status: 200,
-            headers: {
-              "content-type": "application/javascript",
-            },
-            async *stream() {
-              const data = await fs.readFile(path.join(projectRoot, "bundled", "client.js.map"));
-              yield data;
-            },
-          };
-      }
-    }
-
-    const response = await next(request);
-    return response;
-  });
+  // serve some static files
+  server.registerMiddleware(
+    api.lib.createServeMiddleware({
+      "/": {
+        contentType: "text/html",
+        path: path.join(projectRoot, "public", "index.html"),
+      },
+      "/client.js": {
+        contentType: "application/javascript",
+        path: path.join(projectRoot, "bundled", "client.js"),
+      },
+      "/client.js.map": {
+        contentType: "application/json",
+        path: path.join(projectRoot, "bundled", "client.js.map"),
+      },
+      "/favicon.ico": false,
+    }),
+  );
 
   // get port to listen to from the environment or use the default
   const port = Number(process.env.PORT ?? 8080);
