@@ -22,22 +22,9 @@ function main() {
       }
 
       // call the api
-      const result = await api.reverse(
-        {
-          contentType: "text/plain",
-          value: () => input.value,
-        },
-        {},
-        { baseUrl: new URL("/", window.document.location.href) },
-      );
-
-      // verify response status
-      if (result.status !== 200) {
-        throw new Error("unexpected status");
-      }
-
-      // get the result
-      const resultValue = await result.value();
+      const resultValue = await api.client.reverse(input.value, {
+        baseUrl: new URL("/", window.document.location.href),
+      });
 
       // find the result div, assume it's there
       const resultDiv = document.getElementById("result")!;
