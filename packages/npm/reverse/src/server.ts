@@ -2,6 +2,7 @@ import path from "path";
 import * as api from "reverse-api";
 import * as shared from "shared";
 import * as authenticationHandlers from "./authentication-handlers/index.js";
+import { Authentication } from "./authentication-handlers/types.js";
 import * as operationHandlers from "./operation-handlers.js";
 import { projectRoot } from "./root.js";
 
@@ -10,7 +11,7 @@ main();
 // entrypoint for the server
 async function main() {
   // create the server
-  const server = new api.server.Server();
+  const server = new api.server.Server<Authentication>();
 
   // register authentication handlers
   server.registerAuthentications(authenticationHandlers);
