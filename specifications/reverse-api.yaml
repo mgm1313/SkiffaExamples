@@ -7,6 +7,16 @@ info:
     to get started with Skiffa.
   version: 0.1.0
 
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
 paths:
   /reverse:
     post:
@@ -26,3 +36,5 @@ paths:
             "text/plain":
               schema:
                 type: string
+        "401":
+          description: Unauthorized
